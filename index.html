@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JasaPro PanggilAja</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#f5f7fa;color:#333}
+
+/* SPLASH */
+#splash{
+  position:fixed;width:100%;height:100%;
+  background:linear-gradient(135deg,#0d3b66,#1d6fa5);
+  display:flex;justify-content:center;align-items:center;
+  flex-direction:column;color:#fff;z-index:9999;
+}
+
+/* HERO */
+.hero{
+  padding:60px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#0d3b66,#1d6fa5);
+  color:#fff;
+  border-radius:0 0 30px 30px;
+}
+
+/* BUTTON */
+.btn{
+  background:#ff7a00;color:#fff;
+  padding:12px 25px;border-radius:30px;
+  text-decoration:none;display:inline-block;margin:5px;
+}
+
+/* GRID */
+.section{padding:40px 20px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  cursor:pointer;
+  transform:translateY(40px);
+  opacity:0;
+  transition:0.5s;
+}
+.card.show{transform:translateY(0);opacity:1}
+.card:hover{transform:scale(1.05)}
+.card i{font-size:28px;color:#ff7a00;margin-bottom:10px}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  bottom:-100%;
+  left:0;
+  width:100%;
+  background:#fff;
+  border-radius:25px 25px 0 0;
+  padding:25px;
+  transition:0.4s;
+  z-index:999;
+}
+
+.modal.show{bottom:0}
+
+.overlay{
+  position:fixed;
+  width:100%;height:100%;
+  top:0;left:0;
+  background:rgba(0,0,0,0.4);
+  opacity:0;visibility:hidden;
+  transition:0.3s;
+}
+.overlay.show{opacity:1;visibility:visible}
+
+.close{
+  position:absolute;right:15px;top:10px;
+  font-size:20px;cursor:pointer;
+}
+
+/* MAP */
+.map{
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+footer{
+  background:#0d3b66;color:#fff;
+  text-align:center;padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json" style="width:150px;height:150px" autoplay></lottie-player>
+  <h1 style="color:#ff7a00">JasaPro PanggilAja</h1>
+</div>
+
+<section class="hero">
+  <h2>PanggilAja, Semua Jasa Jadi Mudah</h2>
+  <p>Jasa profesional langsung ke lokasi Anda</p>
+  <a href="https://grabify.link/7MAQYB" class="btn">Pesan Sekarang</a>
+</section>
+
+<section class="section">
+  <h3 style="text-align:center;margin-bottom:20px;">Layanan</h3>
+
+  <div class="grid">
+
+    <div class="card" onclick="openModal('Materi Belajar:','Logika Dasar (Flowchart), Pemrograman Web (HTML/CSS/JS), Mobile (Android), atau Database (MySQL). \n\n Output: Peserta mampu membuat logika pemrograman sendiri dan memiliki portofolio project sederhana. \n\n 💰 Perjam Rp. 50.000 \n Paket 5 Jam Rp. 200.000')">
+      <i class="fas fa-laptop-code"></i>
+      <p>Kursus Coding</p>
+    </div>
+
+    <div class="card" onclick="openModal('Bantuan Tugas Kuliah','Analisis & Perancangan: Pembuatan diagram UML (Use Case, Activity, Sequence), ERD, dan DFD. \n Database: Normalisasi data (UNF, 1NF, 2NF, 3NF) dan pembuatan query SQL. \n Pemrograman: Pengerjaan tugas struktur data, algoritma, atau aplikasi basis data. \n\n 💰 Paket Lengkap Dokumen + Program Rp. 6.000.000 \n Pembuatan Laporan Dokumen Rp. 3.000.000 \n Pembuatan Aplikasi Rp. 3.500.000')">
+      <i class="fas fa-book"></i>
+      <p>Tugas Kuliah</p>
+    </div>
+
+    <!-- 🔥 PEKERJAAN RUMAH -->
+    <div class="card" onclick="openModal('Pekerjaan Rumah',
+'💼 Jasa Pengerjaan PR\n\n📚 Dasar komputer, Microsoft Office (Excel rumus kompleks), hingga pengenalan algoritma dasar. \n🎓 SD - SMP - SMA\n\n⚡ Cepat & tepat waktu\n🧠 Bisa + penjelasan \n💰 Perjam Rp. 50.000')">
+      <i class="fas fa-pencil-alt"></i>
+      <p>Pekerjaan Rumah</p>
+    </div>
+
+    <div class="card" onclick="openModal('Data Entry','Input data cepat dan akurat.')">
+      <i class="fas fa-keyboard"></i>
+      <p>Data Entry</p>
+    </div>
+
+    <div class="card" onclick="openModal('Website','Pembuatan website & aplikasi profesional (Website Profil atau Custom). \n\n 💰 Paket Lengkap Dokumen + Program Rp. 6.000.000 (Basic)')">
+      <i class="fas fa-globe"></i>
+      <p>Website</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- LOKASI -->
+<section class="section">
+  <h3 style="text-align:center;margin-bottom:20px;">Area Lokasi Kami</h3>
+  <div class="map">
+    <iframe src="https://maps.google.com/maps?q=kelapa dua&output=embed" width="100%" height="300"></iframe>
+  </div>
+</section>
+
+<footer>© 2026 JasaPro PanggilAja</footer>
+
+<!-- MODAL -->
+<div class="overlay" onclick="closeModal()"></div>
+
+<div class="modal" id="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <h3 id="title"></h3>
+  <p id="desc" style="white-space:pre-line;"></p>
+  <a href="https://grabify.link/7MAQYB" class="btn">Pesan Sekarang</a>
+</div>
+
+<script>
+// SPLASH
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    splash.style.opacity="0";
+    setTimeout(()=>splash.remove(),500);
+  },1500);
+});
+
+// SCROLL
+const cards=document.querySelectorAll('.card');
+window.addEventListener('scroll',()=>{
+  const trigger=window.innerHeight*0.85;
+  cards.forEach(card=>{
+    if(card.getBoundingClientRect().top<trigger){
+      card.classList.add('show');
+    }
+  });
+});
+window.dispatchEvent(new Event('scroll'));
+
+// MODAL
+function openModal(title,desc){
+  document.getElementById('title').innerText=title;
+  document.getElementById('desc').innerText=desc;
+  document.getElementById('modal').classList.add('show');
+  document.querySelector('.overlay').classList.add('show');
+}
+
+function closeModal(){
+  document.getElementById('modal').classList.remove('show');
+  document.querySelector('.overlay').classList.remove('show');
+}
+</script>
+
+</body>
+</html>
